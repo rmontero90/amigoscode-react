@@ -1,13 +1,23 @@
-import './App.css'
-import Card from './components/Card'
+import "./App.css";
+import Card from "./components/Card";
+import Details from "./components/Details";
+import BlogPost from "./components/BlogPost";
 
-function App() {
-
+const App = () => {
   return (
     <>
-      <Card title="My Card" description="This is a simple card component." />
+      <BlogPost title="5 Simple Steps to Maximize Your Home's Garden Harvest">
+        <p>
+          {' '}
+          Transform your home garden into a thriving heaven for fresh produce!
+        </p>
+        <p>
+          Discover how to select the right crops, optimize your planting space,
+          and implement sustainable practices for long-lasting success.
+        </p>
+      </BlogPost>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
