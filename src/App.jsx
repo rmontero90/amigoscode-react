@@ -1,8 +1,8 @@
-import "./App.css";
 import Card from "./components/Card";
-import BlogPost from "./components/BlogPost";
-import { videos } from "./video-data";
-import { lazy, Suspense } from "react";
+// import BlogPost from "./components/BlogPost";
+// import { videos } from "./video-data";
+import { techPosts } from "./tech-data";
+// import { lazy, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 
@@ -27,12 +27,10 @@ return showDetails && (
     </>
   );
 };
-
 */
 
 
-/* ** Error Boundary Case ** */
-
+/* ** Error Boundary Case ** 
 const Details = lazy(() => {
   return Promise.reject
 });
@@ -40,17 +38,35 @@ const Details = lazy(() => {
 const App = () => {
   const showDetails = true;
 
-return showDetails && (
-    <>
-    <ErrorBoundary fallback={<div>Something has gone wrong</div>} ><Details /></ErrorBoundary>
-     {videos.map(video => (
-        <Card 
-          key={video.id}
-          video={video}
-        />
-      ))} 
-    </>
-  );
-};
+  return showDetails && (
+      <>
+      <ErrorBoundary fallback={<div>Something has gone wrong</div>} ><Details /></ErrorBoundary>
+      {videos.map(video => (
+          <Card 
+            key={video.id}
+            video={video}
+          />
+        ))} 
+      </>
+    );
+};*/
+
+/* Exercise */
+
+const App = () => {
+  const darkMode = true;
+  const styles = darkMode ? {color : 'white', backgroundColor: 'black'} : { color: 'black', backgroundColor: 'white'};
+
+  return (
+      <div style={{ ...styles, color: 'gray', fontFamily: 'sans-serif', textAlign: 'center'}}>
+      {
+      techPosts.map((tech) => (
+          <Card key={tech.id} video={tech} />
+      ))
+      }
+      </div>
+  )
+
+}
 
 export default App;

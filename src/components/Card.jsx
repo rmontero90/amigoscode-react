@@ -1,10 +1,10 @@
-const Card = ({ video, children }) => {
+const Card = ({ video }) => {
     
     const handleClick = () => {
         alert('Clicked');
     }
 
-    return video.genre === 'Comedy' && (
+    return (
         <div className="card">
             <h2>{video.title}</h2>
             <p>{video.description}</p>
