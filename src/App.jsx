@@ -4,6 +4,8 @@ import Card from "./components/Card";
 import { techPosts } from "./tech-data";
 // import { lazy, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+// import './App.css';
+import styles from "./App.module.css";
 
 
 /* ** Suspense Case ***
@@ -55,10 +57,10 @@ const App = () => {
 
 const App = () => {
   const darkMode = true;
-  const styles = darkMode ? {color : 'white', backgroundColor: 'black'} : { color: 'black', backgroundColor: 'white'};
+  const darkModeClass = darkMode ? styles['dark-mode'] : styles['light-mode']
 
   return (
-      <div style={{ ...styles, color: 'gray', fontFamily: 'sans-serif', textAlign: 'center'}}>
+      <div className={` ${styles.wrapper} ${darkModeClass}`}>
       {
       techPosts.map((tech) => (
           <Card key={tech.id} video={tech} />
