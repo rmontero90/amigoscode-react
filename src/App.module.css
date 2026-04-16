@@ -1,6 +1,9 @@
 .wrapper {
     text-align: center;
     padding: 25px;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
 }
 
 .light-mode {
