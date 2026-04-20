@@ -1,29 +1,16 @@
-import { useReducer } from "react";
+import { useContext } from "react";
+import { CounterContext } from "../CounterContext";
 
 const Counter = () => {
 
-    const initialState = {
-        countOne: 0,
-        countTwo: 0
-    }
-    const counterReducer = (state, action) => {
-        const actions = {
-            increment: () => ({...state, countOne: state.countOne + 1}),
-            decrement: () => ({...state, countTwo: state.countTwo - 1}),
-            reset: () => initialState
-        };
-
-        return actions[action] ? actions[action]() : state;
-    }
-
-    const [state, dispatch] = useReducer(counterReducer, initialState);
+    const [state, dispatch] = useContext(CounterContext);
     
 
     return (
         <section>
-            <h1>{state.countOne}</h1>
+            <h1>{state.counterOne}</h1>
             <button onClick={() => dispatch('increment')}>+</button>
-            <h1>{state.countTwo}</h1>
+            <h1>{state.counterTwo}</h1>
             <button onClick={() => dispatch('decrement')}>-</button>
             <button onClick={() => dispatch('reset')}>Reset</button>
         </section>    
