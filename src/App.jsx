@@ -1,33 +1,39 @@
 // import styles from './App.module.css';
 // import CounterTwo from './components/CounterTwo';
-import { useReducer } from 'react'
-import Counter from "./components/Counter";
-import { CounterContext } from './CounterContext';
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-  const initialState = {
-      counterOne: 0,
-      counterTwo: 0
-  }
-
-  const counterReducer = (state, action) => {
-      const actions = {
-          increment: () => ({...state, counterOne: state.counterOne + 1}),
-          decrement: () => ({...state, counterTwo: state.counterTwo - 1}),
-          reset: () => initialState
-      };
-
-      return actions[action] ? actions[action]() : state;
-  }
 
 /* Exercise */
 
 const App = () => {
-  const value = useReducer(counterReducer, initialState);
-  return (
-    <CounterContext.Provider value={value}>
-      <Counter />
-    </CounterContext.Provider>
-  )
+  const [pokemonList, setPokemonList] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://pokeapi.co/api/v2/pokemon');
+      setPokemonList(response.data);
+      } catch (error) {
+        console.error('Error fetching Pokemon data:', error);
+      }
+      
+    }
+    fetchData();
+  }, []);
+
+  if (!pokemonList?.results) {
+    return <p>Loading...</p>
+  } else {
+    return (
+      <>
+        <h1>Pokemon List API</h1>    
+        <ul>
+          {pokemonList.results.map(pokemon => <li key={pokemon.name}>{pokemon.name}</li>)}
+        </ul>
+      </>
+   );
+  }
 
 }
 
